@@ -28,7 +28,7 @@ function App() {
           sx={{
             display: 'flex',
             width: '90%',
-            height: '80vh',
+            height: { xs: '90vh', md: '80vh' },
             borderRadius: 2,
             boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
             overflow: 'hidden', // 내부 내용 스크롤을 위해

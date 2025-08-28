@@ -13,7 +13,7 @@ function LeftSide({ theme }) {
       sx={{
         width: '30%', // 왼쪽 사이드바 너비
         backgroundColor: '#e3f2fd', // 연한 파란색 배경
-        display: 'flex',
+        display: { xs: 'none', md: 'flex' },
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center', // 세로 중앙 정렬

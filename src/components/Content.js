@@ -29,7 +29,7 @@ function Content({ theme }) {
   return (
     <Box
       sx={{
-        width: '70%', // 오른쪽 채팅 영역 너비
+        width: { xs: '100%', md: '70%' }, // 오른쪽 채팅 영역 너비
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: theme.palette.common.white,

@@ -13,14 +13,11 @@ import { prompt } from '../gemini/prompt';
 function Input({ theme, msgs, setMsgs, loading, setLoading }) {
 
   const [userMsg, setUserMsg] = useState('');
-  console.log(msgs.length)
   const sendMsg = async (text) => {
     const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
     // 1. Body로 보낼 데이터 객체
-    const body = msgs.length === 1
-    ?
-    {
+    const body = {
       "contents": [
         ...msgs,
         {
@@ -32,19 +29,7 @@ function Input({ theme, msgs, setMsgs, loading, setLoading }) {
         }
       ]
     }
-    :
-    {
-      "contents": [
-        ...msgs,
-        {
-          "role": 'user',
-          "parts": [{
-            "text": text
-          }
-          ],
-        }
-      ]
-    }
+
 
     // 2. Headers를 포함한 config 객체
     const config = {
@@ -73,7 +58,17 @@ function Input({ theme, msgs, setMsgs, loading, setLoading }) {
 
   const handleSend = () => {
     if (loading) return false;
-    if (userMsg==='') return false;
+    if (userMsg === '') return false;
+    if (userMsg === '/초기화') {
+      setMsgs(
+        [{
+          role: 'model',
+          parts: [{ text: '안녕하세요! 다이소 AI 약사입니다. 무엇이 궁금하신가요?' }],
+        }]
+      )
+      setUserMsg('');
+      return false;
+    }
 
     const newMsg = {
       "role": 'user',
